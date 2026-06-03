@@ -52,7 +52,7 @@ export function SelectBox({
 
   return (
     <div style={containerStyle}>
-      {label && <label style={labelStyle}>{label}</label>}
+      {/* {label && <label style={labelStyle}>{label}</label>} */}
       <select style={selectStyle} {...props}>
         <option value="">Select...</option>
         {options.map((option) => (
