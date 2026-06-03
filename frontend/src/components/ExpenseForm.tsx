@@ -89,6 +89,26 @@ export function ExpenseForm({
   const [categoryOptions, setCategoryOptions] = React.useState<Option[]>([]);
   const [isLoadingCategories, setIsLoadingCategories] = React.useState(true);
 
+  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+    const dateNow = new Date().toISOString().split("T")[0]
+
+    //defaulting to current date
+    if (!e.target.value) {
+      handleChange("date", dateNow);
+      return;
+    }
+
+    const selectedDate = new Date(e.target.value).toISOString().split("T")[0];
+
+    if (selectedDate > dateNow) {
+      window.alert(`Please select the date starting from today, ${dateNow} and moving backward for your required timeframe.`);
+      return handleChange("date", dateNow)
+    }
+
+    return handleChange("date", selectedDate)
+  }
+
   React.useEffect(() => {
     fetchCategories()
       .then((data) => {
@@ -170,10 +190,11 @@ export function ExpenseForm({
           label="Date"
           type="date"
           value={formData.date}
-          onChange={(e) => handleChange("date", e.target.value)}
+          onChange={handleDateChange}
           error={errors.date}
           fullWidth
           required
+          max={new Date().toISOString().split("T")[0]}
         />
 
         <div style={buttonGroupStyle}>
