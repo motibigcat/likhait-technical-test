@@ -139,6 +139,8 @@ export function ExpenseForm({
           type="number"
           step="0.01"
           placeholder="0.00"
+          inputMode="decimal"
+          min="0"
           value={formData.amount}
           onChange={(e) => handleChange("amount", e.target.value)}
           error={errors.amount}
