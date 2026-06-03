@@ -61,6 +61,7 @@ export function MonthNavigation({
     maxWidth: "900px",
     marginRight: "32px",
     flex: 1,
+    overflow: "scroll"
   };
 
   const navigationButtonStyle: React.CSSProperties = {
